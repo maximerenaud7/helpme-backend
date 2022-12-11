@@ -1,0 +1,175 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-graphql
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.1.1
+  Exclude:
+    - 'db/migrate/**'
+    - 'config/**/*'
+    - 'bin/*'
+    - 'spec/rails_helper.rb'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - Guardfile
+
+Naming/AccessorMethodName:
+  Exclude:
+    - 'app/rpc/**/*'
+
+Metrics/ClassLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 12
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/NonNilCheck:
+  Enabled: true
+  IncludeSemanticChanges: true
+
+Style/DoubleNegation:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+RSpec/ImplicitSubject:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/ExpectInHook:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/MessageChain:
+  Enabled: false
+
+RSpec/FilePath:
+  SpecSuffixOnly: true
+
+RSpec/ContextWording:
+  Prefixes:
+    - when
+    - with
+    - within
+    - without
+    - if
+    - unless
+    - for
+    - by
+    - in
+    - that
+    - who
+    - from
+    - while
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/StubbedMock:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+Rails/ActiveRecordCallbacksOrder:
+  Enabled: true
+
+Rails/FindById:
+  Enabled: true
+
+Rails/Inquiry:
+  Enabled: true
+
+Rails/MailerName:
+  Enabled: true
+
+Rails/MatchRoute:
+  Enabled: true
+
+Rails/NegateInclude:
+  Enabled: true
+
+Rails/Pluck:
+  Enabled: true
+
+Rails/PluckInWhere:
+  Enabled: true
+
+Rails/RenderInline:
+  Enabled: true
+
+Rails/RenderPlainText:
+  Enabled: true
+
+Rails/ShortI18n:
+  Enabled: true
+
+Rails/WhereExists:
+  Enabled: true
+
+Rails/SaveBang:
+  Enabled: true
+
+Rails/InverseOf:
+  Enabled: false
+
+GraphQL/ObjectDescription:
+  Enabled: false
+
+GraphQL/ArgumentDescription:
+  Enabled: false
+
+GraphQL/ExtractInputType:
+  Enabled: false
+
+GraphQL/FieldDescription:
+  Enabled: false
+
+GraphQL/OrderedFields:
+  Enabled: false
+
+GraphQL/ExtractType:
+  Enabled: false
+
+GraphQL/ResolverMethodLength:
+  Enabled: false
+
+Style:
+  Severity: error
+
+Metrics:
+  Severity: error
+
+GraphQL:
+  Severity: error
+
+Rails:
+  Severity: error
+
+RSpec:
+  Severity: error
+
+Naming:
+  Severity: error
