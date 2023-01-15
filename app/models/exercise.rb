@@ -5,7 +5,11 @@ class Exercise < ApplicationRecord
 
   has_many :exercise_answers, dependent: :destroy
   has_many :answers, through: :exercise_answers
+  has_many :occurences, dependent: :destroy
   # has_many :answers, through: :exercise_answers, source: :exercise
 
-  after_initialize :after_initialize
+  def build
+    answers.map(&:build)
+    super
+  end
 end

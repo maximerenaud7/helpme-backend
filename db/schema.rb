@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_11_135722) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_15_112339) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.string "name"
-    t.text "value"
+    t.string "display_name"
+    t.text "html"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -41,14 +41,27 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_135722) do
   end
 
   create_table "exercises", force: :cascade do |t|
-    t.string "name"
-    t.text "value"
+    t.string "display_name"
+    t.text "html"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "occurences", force: :cascade do |t|
+    t.bigint "exercise_id"
+    t.bigint "answer_id"
+    t.bigint "variable_id"
+    t.integer "occurence_type", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_occurences_on_answer_id"
+    t.index ["exercise_id"], name: "index_occurences_on_exercise_id"
+    t.index ["variable_id"], name: "index_occurences_on_variable_id"
+  end
+
   create_table "variables", force: :cascade do |t|
-    t.string "name"
+    t.string "slug"
+    t.string "display_name"
     t.text "value"
     t.integer "variable_type", default: 0
     t.datetime "created_at", null: false

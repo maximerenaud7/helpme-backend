@@ -3,5 +3,5 @@
 class Answer < ApplicationRecord
   include Transformable
 
-  after_initialize :after_initialize
+  has_many :occurences
 end

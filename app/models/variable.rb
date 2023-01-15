@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
 class Variable < ApplicationRecord
-  enum :variable_type, %i[text constant interval list]
+  has_many :occurences
+
+  enum :variable_type, %i[text constant interval formula list]
 end

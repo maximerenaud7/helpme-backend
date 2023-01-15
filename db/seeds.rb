@@ -6,18 +6,24 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-2.times do |i|
-  Variable.create(name: "Interval #{i * 3}-#{100 - i * 3}", variable_type: :interval, value: "#{i * 3}-#{100 - i * 3}")
-end
+A = Variable.create(slug: "taux-1", display_name: "Taux 1", variable_type: :interval, value: "10-20")
+B = Variable.create(slug: "taux-2", display_name: "Taux 2", variable_type: :interval, value: "20-30")
+C = Variable.create(slug: "result", display_name: "Résultat", variable_type: :formula, value: "text(taux-1) + text(taux-2)")
 
-no_answer = Answer.create(name: "Aucune réponse", value: "Il n'y a pas de réponse")
-exercise = Exercise.create(name: "Exercice 1", value: "${v%1} + ${v%2} = ?", answers: [
-  no_answer,
-  Answer.create(name: "Answer 2", value: "La réponse est <<${v%1}+${v%1}>>")
-])
-exercise2 = Exercise.create(name: "Exercice 2", value: "Quelle est la capitale de l'Europe ?", answers: [
-  Answer.create(name: "Bruxelles", value: "Bruxelles"),
-  Answer.create(name: "Berlin", value: "Berlin"),
-  Answer.create(name: "Londres", value: "Londres"),
-  Answer.create(name: "Paris", value: "Paris"),
-])
+no_answer = Answer.create(display_name: "Aucune réponse", html: "Il n'y a pas de réponse")
+answer = Answer.create(display_name: "Answer 1", html: "<span data-variable-id=\"#{C.id}\" data-occurence-id=\"4\"></span>")
+
+exercise = Exercise.create(
+  display_name: "Exercice 1",
+  html: "Exemple : <span data-variable-id=\"#{C.id}\" data-occurence-id=\"0\"></span> = <span data-variable-id=\"#{C.id}\" data-occurence-id=\"1\"></span> = <span data-variable-id=\"#{C.id}\" data-occurence-id=\"2\"></span> = <span data-variable-id=\"#{C.id}\" data-occurence-id=\"3\"></span>",
+  occurences: [
+    Occurence.create({ id: 0, occurence_type: :text, variable: C }),
+    Occurence.create({ id: 1, occurence_type: :raw_formula, variable: C }),
+    Occurence.create({ id: 2, occurence_type: :formula, variable: C }),
+    Occurence.create({ id: 3, occurence_type: :value, variable: C }),
+  ],
+  answers: [
+    no_answer,
+    answer
+  ]
+)
