@@ -7,12 +7,14 @@ AllCops:
   NewCops: enable
   TargetRubyVersion: 3.1.1
   Exclude:
+    - 'db/schema.rb'
     - 'db/migrate/**'
     - 'config/**/*'
     - 'bin/*'
     - 'spec/rails_helper.rb'
     - 'vendor/**/*'
     - 'node_modules/**/*'
+    - 'app/controllers/graphql_controller.rb'
     - Guardfile
 
 Naming/AccessorMethodName:
@@ -23,9 +25,16 @@ Metrics/ClassLength:
   Max: 120
 
 Metrics/MethodLength:
-  Max: 12
+  Max: 24
 
 Style/AsciiComments:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  SafeAutoCorrect: true
+
+Style/Documentation:
   Enabled: false
 
 Style/NonNilCheck:

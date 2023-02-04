@@ -3,7 +3,6 @@ class CreateExercises < ActiveRecord::Migration[7.0]
     create_table :exercises do |t|
       t.string :name
       t.text :value
-      
       t.timestamps
     end
   end
